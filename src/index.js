@@ -5,15 +5,20 @@ import AppFooter from "./AppFooter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import AppContent from "./AppContent";
+import AppHeader from "./AppHeader";
 
 class App extends Component {
   render() {
+    const myProps = {
+      title: "My Cool App!",
+      subject: "My subject",
+      favorite_color: "red",
+    };
+
     return (
       <div className="app">
-        <div>
-          <h1>Hello World</h1>
-          <AppContent />
-        </div>
+        <AppHeader {...myProps} />
+        <AppContent />
         <AppFooter />
       </div>
     );

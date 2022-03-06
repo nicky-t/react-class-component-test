@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
 export default class AppContent extends Component {
-  state = { posts: [] };
+  constructor(props) {
+    super(props);
+    this.handlePostChange = this.handlePostChange.bind(this);
 
-  anotherFunction = () => {
-    console.log("anotherFunction");
-  };
+    this.state = { posts: [] };
+  }
 
-  leftParagraph = () => {
-    console.log("leftParagraph");
+  handlePostChange = (posts) => {
+    this.props.handlePostChange(posts);
   };
 
   fetchList = () => {
@@ -16,6 +17,7 @@ export default class AppContent extends Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({ posts: json });
+        this.handlePostChange(json);
       });
   };
 
@@ -29,12 +31,6 @@ export default class AppContent extends Component {
         This is the content.
         <br />
         <hr />
-        <p
-          onMouseEnter={this.anotherFunction}
-          onMouseLeave={this.leftParagraph}
-        >
-          This is some text.
-        </p>
         <button onClick={this.fetchList} className="btn btn-primary">
           Fetch Data
         </button>

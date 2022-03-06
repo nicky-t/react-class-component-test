@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 
 export default class AppContent extends Component {
-  fetchList() {
+  anotherFunction = () => {
+    console.log("anotherFunction");
+  };
+
+  leftParagraph = () => {
+    console.log("leftParagraph");
+  };
+
+  fetchList = () => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((json) => {
@@ -14,13 +22,20 @@ export default class AppContent extends Component {
           posts.appendChild(li);
         });
       });
-  }
+  };
 
   render() {
     return (
       <p>
         This is the content.
         <br />
+        <hr />
+        <p
+          onMouseEnter={this.anotherFunction}
+          onMouseLeave={this.leftParagraph}
+        >
+          This is some text.
+        </p>
         <button onClick={this.fetchList} className="btn btn-primary">
           Fetch Data
         </button>
